@@ -9,7 +9,7 @@ const cors = require('cors');
 
 app.use(cors(
     {
-        origin:[],
+        origin:[portfolio-server-amber-pi.vercel.app],
         methods: ["GET", "POST"],
         credentials: true
     }
