@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Backend of Damon's MERN portfolio",
   "main": "index.js",
+  "engines": {
+    "node": "21.7.2",
+    "npm": "10.8.0"
+  },
   "scripts": {
     "start-server": "nodemon server.js",
     "start-client": "cd frontend && npm start",
