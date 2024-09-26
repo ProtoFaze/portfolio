@@ -62,23 +62,7 @@ router.post('/update-about', async (req, res) => {
         res.status(500).send(err);
     }
 });
-router.post('/update-experience', async (req, res) => {
-    try {
-        // Update the experience data
-        const landing = await Experience.findOneAndUpdate(
-            { _id: req.body._id },
-            req.body,
-            { new: true }
-        );
-        res.status(200).send({
-            data: landing,
-            success: true,
-            message: 'Experience section updated successfully'
-        });
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
+
 //add experience
 router.post('/add-experience', async (req, res) => {
     try {

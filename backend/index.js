@@ -5,6 +5,15 @@ const dbconfig = require('./config/dbconfig');
 const port = process.env.PORT || 5001;
 const path = require('path');
 const portfolioRoute = require('./routes/portfolioRoute');
+const cors = require('cors');
+
+app.use(cors(
+    {
+        origin:[],
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+))
 
 app.use(express.json());
 
