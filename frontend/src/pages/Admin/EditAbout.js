@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ShowLoading, HideLoading } from "../../redux/rootSlice";
 import useIterables from "../../components/logic/useIterables";
 import axios from "axios";
-
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditAbout(){
     //handlers and states
@@ -18,7 +18,7 @@ function EditAbout(){
     const onFinish = async (values) => {
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/update-about', 
+            const response = await axios.post(`${endPoint}/api/portfolio/update-about`, 
                 {
                     ...values,
                     skills: skills,

@@ -3,7 +3,7 @@ import {Form, message} from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { ShowLoading, HideLoading } from "../../redux/rootSlice";
 import axios from "axios";
-
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditLanding(){
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function EditLanding(){
     const onFinish = async (values) => {
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/update-landing', 
+            const response = await axios.post(`${endPoint}/api/portfolio/update-landing`, 
                 {
                     ...values,
                     _id: portfolioData.landing._id,

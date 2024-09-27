@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ShowLoading, HideLoading } from "../../redux/rootSlice";
 import axios from "axios";
 import useIterables from "../../components/logic/useIterables";
-
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditContact(){
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function EditContact(){
     const onFinish = async (values) => {
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/update-contact', 
+            const response = await axios.post(`${endPoint}/api/portfolio/update-contact`, 
                 {
                     ...values,
                     socials: socials,

@@ -4,6 +4,7 @@ import {Modal, Form, message, Row} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from "../../redux/rootSlice";
 import useIterables from "../../components/logic/useIterables";
 import axios from "axios";
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditProjects() {
     const dispatch = useDispatch();
@@ -19,13 +20,13 @@ function EditProjects() {
             dispatch(ShowLoading());
             let response
             if(selectedProject){
-                response = await axios.post('/api/portfolio/update-project',{
+                response = await axios.post(`${endPoint}/api/portfolio/update-project`,{
                     ...values,
                     skills: skills,
                     _id: selectedProject._id
                 });
             }else{
-                response= await axios.post('/api/portfolio/add-project',values);
+                response= await axios.post(`${endPoint}/api/portfolio/add-project`,values);
             }
             dispatch(HideLoading());
             if(response.data.success){
@@ -45,7 +46,7 @@ function EditProjects() {
     const onDelete = async (item) =>{
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/delete-project',{
+            const response = await axios.post(`${endPoint}/api/portfolio/delete-project`,{
                 _id: item._id
             });
             dispatch(HideLoading());

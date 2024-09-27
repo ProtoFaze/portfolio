@@ -4,6 +4,7 @@ import {Modal, Form, message, Row} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from "../../redux/rootSlice";
 import useIterables from "../../components/logic/useIterables";
 import axios from "axios";
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditCourses() {
     const dispatch = useDispatch();
@@ -19,13 +20,13 @@ function EditCourses() {
             dispatch(ShowLoading());
             let response
             if(selectedCourse){
-                response = await axios.post('/api/portfolio/update-course',{
+                response = await axios.post(`${endPoint}/api/update-course`,{
                     ...values,
                     skills: skills,
                     _id: selectedCourse._id
                 });
             }else{
-                response= await axios.post('/api/portfolio/add-course',values);
+                response= await axios.post(`${endPoint}/api/add-course`,values);
             }
             dispatch(HideLoading());
             if(response.data.success){
@@ -45,7 +46,7 @@ function EditCourses() {
     const onDelete = async (item) =>{
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/delete-course',{
+            const response = await axios.post(`${endPoint}/api/delete-course`,{
                 _id: item._id
             });
             dispatch(HideLoading());

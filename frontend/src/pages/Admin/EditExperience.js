@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Modal, Form, Space, message} from "antd";
 import { HideLoading, ReloadData, ShowLoading } from "../../redux/rootSlice";
 import axios from "axios";
+import { endPoint } from "../../components/logic/endPoints";
 
 function EditExperience() {
     const dispatch = useDispatch();
@@ -16,12 +17,12 @@ function EditExperience() {
             dispatch(ShowLoading());
             let response
             if(selectedExperience){
-                response = await axios.post('/api/portfolio/update-experience',{
+                response = await axios.post(`${endPoint}/api/portfolio/update-experience`,{
                     ...values,
                     _id: selectedExperience._id
                 });
             }else{
-                response= await axios.post('/api/portfolio/add-experience',values);
+                response= await axios.post(`${endPoint}/api/portfolio/add-experience,values`);
             }
             dispatch(HideLoading());
             if(response.data.success){
@@ -41,7 +42,7 @@ function EditExperience() {
     const onDelete = async (item) =>{
         try{
             dispatch(ShowLoading());
-            const response = await axios.post('/api/portfolio/delete-experience',{
+            const response = await axios.post(`${endPoint}/api/portfolio/delete-experience`,{
                 _id: item._id
             });
             dispatch(HideLoading());
