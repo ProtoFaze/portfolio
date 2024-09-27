@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
@@ -8,6 +7,8 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetPortfolioData, ShowLoading, HideLoading, ReloadData } from './redux/rootSlice';
 import Login from './pages/Admin/Login';
+import {endPoint} from "./components/logic/endPoints";
+
 
 function App() {
   const {loading, portfolioData, reloadData} = useSelector((state) => state.root);
@@ -15,10 +16,14 @@ function App() {
   const getData = useCallback(async() =>{
     try{
       dispatch(ShowLoading());
-      const response = await axios.get('/api/portfolio/get-portfolio-data');
+      const request = `${endPoint}/api/portfolio/get-portfolio-data`
+      const response = await axios.get(request);
+      console.log("response received, applying data");
       dispatch(SetPortfolioData(response.data));
       dispatch(ReloadData(false));
       dispatch(HideLoading());
+      
+      console.log(response);
     }catch(err){
       dispatch(HideLoading());
       console.log(err);
