@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Landing, About, Experience, Project, Course, Contact } = require('../models/portfolioModels');
 const { Users } = require('../models/user');
-
 // GET /api/portfolio/get-portfolio-data
 router.get('/get-portfolio-data', async (req, res) => {
     try {
