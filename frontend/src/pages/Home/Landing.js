@@ -1,10 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Loader from "../../components/Loader";
 
 function Landing(){
     const {loading, portfolioData} = useSelector((state) => state.root);
     const {landing} = portfolioData;
     const {welcomeText, firstName, lastName, caption, description} = landing;
+    
+    if (loading) {
+        return <Loader />;
+    }
+
     return(
         // make the background translucent and aligned to the right
         <div className="h-[80vh] flex flex-row sm:flex-col sm:justify-center items-center">

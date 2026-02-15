@@ -1,11 +1,17 @@
 import React from "react";
 import SectionTitle from "../../components/SectionTitle";
 import { useSelector } from "react-redux";
+import Loader from "../../components/Loader";
 
 function Courses(){
     const {loading, portfolioData} = useSelector((state) => state.root);
     const {courses} = portfolioData;
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    
+    if (loading) {
+        return <Loader />;
+    }
+
     return(
         <div className="flex flex-col py-20 sm:px-0">
         <SectionTitle title="Courses"/>

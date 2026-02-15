@@ -1,11 +1,16 @@
 import React from "react";
 import SectionTitle from "../../components/SectionTitle";
 import { useSelector } from "react-redux";
+import Loader from "../../components/Loader";
 
 function AboutMe() {
     const {loading, portfolioData} = useSelector((state) => state.root);
     const {about} = portfolioData;
     const {lottieURL, description1, description2, skills} = about;
+
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <div id="about">
