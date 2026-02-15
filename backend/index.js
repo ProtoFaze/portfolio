@@ -19,6 +19,15 @@ app.use(express.json());
 
 app.use('/api/portfolio', portfolioRoute);
 
+// Health check endpoint for Render
+app.get('/api/portfolio/health', (req, res) => {
+    res.status(200).json({ 
+        status: 'healthy', 
+        timestamp: new Date().toISOString(),
+        database: dbconfig.readyState === 1 ? 'connected' : 'disconnected'
+    });
+});
+
 // if(process.env.NODE_ENV === 'production'){
 //     app.use(express.static(path.join('frontend/build')));
 //     app.get('*', (req, res) => {
